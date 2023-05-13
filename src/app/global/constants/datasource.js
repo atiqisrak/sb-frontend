@@ -1,3 +1,12 @@
 export const siteConstants = {
-  imageURL: "http://127.0.0.1:4000/images/",
+  // imageURL: "http://127.0.0.1:3000/images/",
+  imageURL: `${window.location.origin}/images/`,
 };
+
+// import { useDynamicDomain } from "@/app/useDynamicDomain";
+
+// const domain = useDynamicDomain();
+
+// export const siteConstants = {
+//   imageURL: `${domain}/images/`,
+// };
