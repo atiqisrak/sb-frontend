@@ -7,7 +7,7 @@ import ShipmentCTA from "./components/ShipmentCTA";
 import Featured from "./components/Featured/page";
 import Shop from "./Shop/page";
 import Services from "./Services/page";
-import Gallery from "./Gallery/page";
+// import Gallery from "./Gallery/page";
 
 const inter = Inter({ subsets: ["latin"] });
 
