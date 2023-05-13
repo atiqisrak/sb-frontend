@@ -1,0 +1,9 @@
+.promoCampDesk {
+  width: 100vw;
+  height: auto;
+}
+.promoCampMobi {
+  display: none;
+  width: fit-content;
+  height: auto;
+}

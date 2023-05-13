@@ -1,0 +1,108 @@
+.heroSectionContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("/Images/Herobg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 100vh;
+  /* margin-top: -100px; */
+  padding-top: 10vh;
+  margin: -100px auto 0;
+}
+@media screen and (max-width: 1023px) {
+  .heroSectionContainer {
+    background-image: url("/Images/herobgm.png");
+    background-size: 98vw;
+    background-position: left top;
+    align-items: flex-start;
+  }
+  .bikeImage img {
+    width: 98vw;
+    height: auto;
+  }
+  .heroContainer h1 {
+    padding-top: 3vh;
+  }
+}
+.heroContainer {
+  /* width: clamp(1170px, 80%, 4096px); */
+  /* width: 100vw; */
+  /* display: grid; */
+  /* grid-template-columns: 1fr 3fr; */
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+  z-index: 11;
+}
+.heroContainer .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+/* .heroContainer .content .bikeImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+.heroContainer h1 {
+  /* font-size: 9.4rem; */
+  font-size: 9.5vw;
+  line-height: 15vh;
+  font-weight: 400;
+  font-family: "Changa One", cursive;
+  color: #ccc;
+  text-transform: uppercase;
+}
+.heroContainer .content .review {
+  display: flex;
+  align-items: center;
+}
+.heroContainer .content .review p {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #333;
+  padding-right: 20px;
+}
+.heroContainer .content .review img {
+  padding-left: 20px;
+  border-left: 2px solid #ccc;
+}
+.bikeImage img {
+  padding-top: 50px;
+}
+
+@media screen and (max-width: 1023px) {
+  .heroSectionContainer,
+  .heroContainer,
+  .content,
+  .bikeImage,
+  .review,
+  img,
+  h1 {
+    padding: 0;
+    margin: 0;
+  }
+  .heroContainer {
+    flex-direction: column-reverse;
+  }
+  .bikeImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .bikeImage img {
+    width: 80vw;
+    height: auto;
+  }
+  .heroContainer .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .heroContainer h1 {
+    font-size: 8rem;
+    line-height: 7.5rem;
+  }
+}

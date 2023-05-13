@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Changa+One&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+:root {
+  --elephant: #7b7b7b;
+  --raven: #333333;
+  --tiger: #ff733b;
+  --polarbear: rgba(255, 255, 255, 0.7);
+  --dolphin: #f8f8f8;
+  --panther: #2b2b2b;
+  --zebra: #434343;
+  --cat: #ff733be6;
+}
+
+* {
+  /* background: rgb(255, 255, 255); */
+  font-family: "Poppins", sans-serif;
+}
+body {
+  scroll-behavior: smooth;
+  margin: 0;
+}
+.flexed {
+  display: flex;
+}
+.centered {
+  justify-content: center;
+}
+.grided {
+  display: grid;
+}
+
+.mobileNavbar {
+  display: none;
+}
+@media screen and (max-width: 1023px) {
+  .mobileNavbar {
+    display: block;
+  }
+  .desktopNavbar {
+    display: none;
+  }
+}
