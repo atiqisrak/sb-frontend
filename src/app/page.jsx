@@ -18,7 +18,7 @@ export default function Home() {
       <PromotionPoster />
       <ShipmentCTA />
       <Featured />
-      <Gallery />
+      {/* <Gallery /> */}
       {/* <Services /> */}
     </>
   );
