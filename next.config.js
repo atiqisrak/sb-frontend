@@ -12,6 +12,13 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
+  images: {
+    domains: [
+      "https://sb-backend.cyclic.app/",
+      "http://127.0.0.1:3000/",
+      "https://sardarbikes.vercel.app/",
+    ],
+  },
 };
 
 module.exports = nextConfig;

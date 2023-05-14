@@ -44,12 +44,12 @@ export default function Featured() {
                 </div>
                 {typeof window !== "undefined" && (
                   <Image
-                    src={siteConstants.imageURL + featuredProducts.image}
+                    src={"/images/" + featuredProducts.image}
                     className="featuredProduct"
                     width={2157}
                     height={1554}
                     alt="Product Picture"
-                    unoptimized="true"
+                    // unoptimized="true"
                     suppressHydrationWarning={true}
                   />
                 )}

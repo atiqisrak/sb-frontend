@@ -72,11 +72,11 @@ export default function Gallery() {
           <div>
             <Title level={5}>{product.description.model}</Title>
             <Image
-              src={siteConstants.imageURL + product.image}
+              src={"/images/" + product.image}
               width={200}
               height={100}
               alt="Product Picture"
-              unoptimized="true"
+              // unoptimized="true"
             />
             <Paragraph>{product.description.mileage} KM</Paragraph>
             <Paragraph>
