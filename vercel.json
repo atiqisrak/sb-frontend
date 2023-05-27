@@ -1,9 +1,4 @@
 {
-    "build": {
-        "optimize": {
-            "images": false
-        }
-    },
     "builds": [
         {
             "src": "next.config.js",
