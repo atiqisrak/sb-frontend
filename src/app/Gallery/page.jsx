@@ -72,7 +72,7 @@ export default function Gallery() {
           <div>
             <Title level={5}>{product.description.model}</Title>
             <Image
-              src={"/images/" + product.image}
+              src={"/Images/" + product.image}
               width={200}
               height={100}
               alt="Product Picture"
