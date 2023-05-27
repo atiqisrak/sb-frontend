@@ -94,6 +94,13 @@ export default function Gallery() {
         Explore
       </Title>
       <Paragraph>The best & favourite bikes</Paragraph>
+      <Image
+        src="/Images/promo.png"
+        alt="Promotional Campaign"
+        width={1440}
+        height={810}
+        className="promoCampDesk"
+      />
       <div>{rows}</div>
     </>
   );
