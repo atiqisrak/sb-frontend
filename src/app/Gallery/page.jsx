@@ -70,7 +70,9 @@ export default function Gallery() {
       {group.map((product) => (
         <Col key={product._id} span={8}>
           <div>
-            <Title level={5}>{product.description.model}</Title>
+            <Title level={5}>
+              {product.description.brand} {product.description.model}
+            </Title>
             <Image
               src={"/Images/" + product.image}
               width={200}
@@ -94,13 +96,13 @@ export default function Gallery() {
         Explore
       </Title>
       <Paragraph>The best & favourite bikes</Paragraph>
-      <Image
+      {/* <Image
         src="/Images/promo.png"
         alt="Promotional Campaign"
         width={1440}
         height={810}
         className="promoCampDesk"
-      />
+      /> */}
       <div>{rows}</div>
     </>
   );

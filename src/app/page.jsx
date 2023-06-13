@@ -8,6 +8,7 @@ import Featured from "./components/Featured/page";
 import Shop from "./Shop/page";
 import Services from "./Services/page";
 import Gallery from "./Gallery/page";
+import AccessoriesShop from "./components/AccessoriesShop/page";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +20,7 @@ export default function Home() {
       <ShipmentCTA />
       <Featured />
       <Gallery />
+      <AccessoriesShop />
       {/* <Services /> */}
     </>
   );
