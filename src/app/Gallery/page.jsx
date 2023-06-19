@@ -74,6 +74,7 @@ export default function Gallery() {
       {group.map((product) => (
         <Col key={product._id} span={8}>
           <div
+            className="productCard"
             style={{
               // width: "16em",
               padding: "1rem 0.4rem",
@@ -103,15 +104,19 @@ export default function Gallery() {
               style={{
                 display: "flex",
                 alignItems: "space-between",
-                justifyContent: "center",
-                marginLeft: "2rem",
+                justifyContent: "space-between",
+                margin: "0 0.5em 0 2rem",
                 gap: "2rem",
+                // width: "3em",
               }}
             >
               <div className="prodDesLeft">
                 <Title
                   level={5}
                   style={{
+                    height: "3em",
+                    display: "flex",
+                    alignItems: "center",
                     fontSize: "1.2rem",
                     fontWeight: "bold",
                   }}
@@ -124,8 +129,8 @@ export default function Gallery() {
                         MAX_TITLE_LENGTH
                       ) + "..."
                     : `${product.description.brand} ${product.description.model}`} */}
-                  {/* {product.description.brand} {product.description.model} */}
-                  {product.description.model}
+                  {product.description.brand} {product.description.model}
+                  {/* {product.description.model} */}
                 </Title>
                 <Paragraph
                   style={{
@@ -168,6 +173,7 @@ export default function Gallery() {
                   <RightOutlined
                     style={{
                       fontSize: "1.5rem",
+                      color: "#ff733be6",
                     }}
                   />
                 </Button>
