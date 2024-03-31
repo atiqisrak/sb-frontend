@@ -1,7 +1,7 @@
 import instance from "@/axios";
 import Header from "@/components/Header";
 import ShadowTitle from "@/components/ShadowTitle";
-import { Spin } from "antd";
+import { Rate, Spin } from "antd";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -47,10 +47,7 @@ export default function BrandPage() {
     <div>
       <Header />
       <div className="ViewContainer">
-        {/* <h1>{brandname} bikes</h1> */}
         <ShadowTitle
-          // title={`${brandname} Bikes`}
-          // capitalize the first letter of the brand name
           title={`${
             brandname.charAt(0).toUpperCase() + brandname.slice(1)
           } Bikes`}
@@ -80,7 +77,8 @@ export default function BrandPage() {
                   borderRadius: "10px",
                 }}
                 onClick={() => {
-                  router.push(`/modelpage/${brand?.modelUrl}`);
+                  // router.push(`/products/${brand?.slug}`);
+                  router.push(`/${brandname}/${brand?.slug}`);
                 }}
               >
                 <Image
@@ -91,8 +89,54 @@ export default function BrandPage() {
                   objectFit="cover"
                   style={{ borderRadius: "10px" }}
                 />
-                <div>
-                  <h4>{brand?.name}</h4>
+                <div
+                  style={{
+                    width: "100%",
+                    padding: "10px 30px",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1em",
+                  }}
+                >
+                  <h3>{brand?.modelTitle}</h3>
+
+                  <Rate disabled allowHalf defaultValue={brand?.avgRating} />
+                  <div className="flexed-between">
+                    <p
+                      style={{
+                        fontSize: "0.9em",
+                        fontWeight: "bold",
+                        color: "black",
+                      }}
+                    >
+                      Engine:{" "}
+                      <span
+                        style={{
+                          color: "var(--tiger)",
+                        }}
+                      >
+                        {brand?.engine}
+                      </span>
+                    </p>
+                    <p
+                      style={{
+                        fontSize: "0.9em",
+                        fontWeight: "bold",
+                        color: "black",
+                      }}
+                    >
+                      Price:{" "}
+                      <span
+                        style={{
+                          color: "var(--tiger)",
+                        }}
+                      >
+                        {brand?.minPriceNonFormat
+                          .toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                      </span>
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}

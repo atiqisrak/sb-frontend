@@ -17,7 +17,7 @@ const ShadowTitle = ({ title, description }) => {
       }}
     >
       <div
-        className="titles"
+        className="titles changa"
         style={{
           display: "flex",
           flexDirection: "column",
@@ -27,25 +27,28 @@ const ShadowTitle = ({ title, description }) => {
         }}
       >
         <Title
+          className="changa"
           autoSize={true}
           level={1}
           style={{
             color: "#ff733b",
             fontSize: "3rem",
-            fontWeight: 600,
+            fontWeight: 400,
             lineHeight: "1.2rem",
             zIndex: 1,
+            // font-family: "Changa One", cursive;
           }}
         >
           {title}
         </Title>
         <Title
+          className="changa"
           autoSize={true}
           level={1}
           style={{
             color: "#7b7b7b20",
             fontSize: "5rem",
-            fontWeight: 600,
+            fontWeight: 400,
             lineHeight: "1.2rem",
             position: "absolute",
             marginTop: "-3rem",

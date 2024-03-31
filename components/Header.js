@@ -13,11 +13,11 @@ const Header = () => {
   const menus = [
     {
       title: "Home",
-      link: "/home",
+      link: "/",
     },
     {
-      title: "About",
-      link: "/about",
+      title: "Brands",
+      link: "/brandpage",
     },
     {
       title: "Contact",
@@ -49,11 +49,19 @@ const Header = () => {
         background: "white",
       }}
     >
-      <img src="/sardarlogo.svg" alt="Sardar Bikes Official Logo" />
-      {/* nav */}
-      {/* {mobileMenuOpen ? (
-        <BarsOutlined onClick={handleMobileMenuToggle} />
-      ) : ( */}
+      <Image
+        preview={false}
+        src="/sardarlogo.svg"
+        alt="Sardar Bikes Official Logo"
+        width={200}
+        height={50}
+        style={{
+          objectFit: "contain",
+        }}
+        onClick={() => {
+          window.location.href = "/";
+        }}
+      />
       <div
         style={{
           display: mobileMenuOpen ? "grid" : "none",
