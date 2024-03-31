@@ -77,8 +77,12 @@ export default function BrandPage() {
                   borderRadius: "10px",
                 }}
                 onClick={() => {
-                  // router.push(`/products/${brand?.slug}`);
-                  router.push(`/${brandname}/${brand?.slug}`);
+                  router.push({
+                    pathname: `/products/${brand?.slug}`,
+                    query: { brandname: brandname, slug: brand?.slug },
+                  });
+                  console.log("Brandname Clicked", brandname);
+                  console.log("Slug Clicked", brand?.slug);
                 }}
               >
                 <Image

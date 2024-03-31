@@ -56,7 +56,7 @@ const ShadowTitle = ({ title, description }) => {
         >
           {title}
         </Title>
-        <Paragraph
+        {/* <Paragraph
           style={{
             paddingTop: "1rem",
             fontFamily: "Poppins",
@@ -67,8 +67,20 @@ const ShadowTitle = ({ title, description }) => {
             letterSpacing: "0.2rem",
           }}
         >
-          {description}
-        </Paragraph>
+          dangerouslySetInnerHTML={{ __html: description }}
+        </Paragraph> */}
+        <p
+          style={{
+            paddingTop: "1rem",
+            fontFamily: "Poppins",
+            color: "#7b7b7b",
+            fontSize: "1.2rem",
+            fontWeight: 400,
+            lineHeight: "1.2rem",
+            textAlign: "center",
+          }}
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
       </div>
     </div>
   );
