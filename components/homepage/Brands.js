@@ -54,11 +54,7 @@ export default function Brands() {
                   borderRadius: "10px",
                 }}
                 onClick={() => {
-                  console.log("Brand Clicked: ", brand?.oemSlug);
                   router.push(`/brandpage/${brand?.oemSlug}`);
-
-                  //   NEXT_PUBLIC_API_BASE_URL=https://api.bikedekho.com/v1/pwa
-                  // NEXT_PUBLIC_MEDIA_URL=https://bd.gaadicdn.com/pwa/img
                 }}
               >
                 <Image
