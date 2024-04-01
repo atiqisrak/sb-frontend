@@ -1,4 +1,18 @@
 export default {
+  restrictMode: true,
+  robots: async () => {
+    if (process.env.NODE_ENV === "development") {
+      return {
+        UserAgent: "*",
+        Disallow: "/",
+      };
+    }
+    return {
+      content: `
+        User-agent: *
+        Allow: /`,
+    };
+  },
   dangerouslyAllowSVG: true,
   distDir: ".next",
   output: "out",
