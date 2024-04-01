@@ -147,24 +147,3 @@ export default function BrandPage() {
     </div>
   );
 }
-
-export async function getServerSideProps({ params }) {
-  const { brandname } = params;
-
-  try {
-    const response = await instance.get(`/brandPage?url=%2F${brandname}-bikes`);
-    const brandData = response?.data?.data?.primaryData || null;
-    return {
-      props: {
-        brandData,
-      },
-    };
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return {
-      props: {
-        brandData: null,
-      },
-    };
-  }
-}

@@ -10,9 +10,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import SwiperCore, { Navigation, Pagination } from "swiper";
+import ProductSlider from "@/components/ProductSlider";
 
 const Products = () => {
-  const MEDIA_URL = process.env.NEXT_PUBLIC_MEDIA_URL;
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const { brandname } = router.query;
@@ -66,75 +66,15 @@ const Products = () => {
   console.log("CategoryData", cat1Data && cat1Data);
 
   return (
-    <div className="ViewContainer">
+    <div>
       <Header />
-      <ShadowTitle
-        title={cat1Data?.priceListTitle}
-        description="Explore the best bikes from this brand"
-      />
-      {/* Swiper JS scroll horizontal with view all button on right */}
-      {cat1Data?.primaryData?.items && (
-        <div style={{ marginTop: "2em" }}>
-          <Swiper
-            spaceBetween={20}
-            slidesPerView={4}
-            loop={true}
-            autoplay={{
-              delay: 500,
-              disableOnInteraction: false,
-            }}
-            pagination={{ clickable: true }}
-            navigation
-            onNavigationNext={(swiper) => {
-              // slide to next
-              swiper.slideNext();
-            }}
-          >
-            {cat1Data?.primaryData?.items?.map((item, index) => (
-              <SwiperSlide key={index}>
-                <div
-                  className="product"
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    padding: "0 0 20px 0",
-                    border: "1px solid #f0f0f0",
-                    borderRadius: "10px",
-                  }}
-                  onClick={() => {
-                    // router.push(`/products/${brandname}/${item?.slug}`);
-                    console.log(
-                      "Product Clicked: ",
-                      `/products/${brandname}/${item?.slug}`
-                    );
-                  }}
-                >
-                  <div className="product-image">
-                    <Image
-                      src={item?.image}
-                      alt={item?.name}
-                      width={300}
-                      height={200}
-                      style={{
-                        objectFit: "contain",
-                        cursor: "pointer",
-                        borderRadius: "10px",
-                      }}
-                    />
-                  </div>
-                  <div className="product-details">
-                    <h3>{item?.name}</h3>
-                    <p>{item?.price}</p>
-                    <Rate disabled defaultValue={item?.rating} />
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-      )}
+
+      <div className="ViewContainer">
+        <ProductSlider title="TVS Bikes" productData={cat1Data} />
+        <ProductSlider title="Hero Bikes" productData={cat2Data} />
+        <ProductSlider title="Honda Bikes" productData={cat3Data} />
+        <ProductSlider title="Bajaj Bikes" productData={cat4Data} />
+      </div>
     </div>
   );
 };

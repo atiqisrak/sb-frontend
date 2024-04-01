@@ -66,3 +66,30 @@ const ProductPage = () => {
 };
 
 export default ProductPage;
+
+export async function getServerSideProps({ params }) {
+  const { brandname, slug } = params;
+
+  try {
+    const apiUrl = `/modelOverview?url=${encodeURIComponent(
+      `/${brandname}/${slug}`
+    )}`;
+    const response = await instance.get(apiUrl);
+    if (response.status === 200) {
+      return {
+        props: {
+          productData: response?.data?.data,
+        },
+      };
+    } else {
+      console.log("Error fetching data");
+    }
+  } catch (error) {
+    console.log("Error fetching data:", error.message);
+  }
+  return {
+    props: {
+      productData: null,
+    },
+  };
+}
