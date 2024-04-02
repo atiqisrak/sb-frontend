@@ -67,8 +67,6 @@ const Products = () => {
 
   return (
     <div>
-      <Header />
-
       <div className="ViewContainer">
         <ProductSlider title="TVS Bikes" productData={cat1Data} />
         <ProductSlider title="Hero Bikes" productData={cat2Data} />

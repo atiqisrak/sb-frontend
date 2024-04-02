@@ -24,7 +24,6 @@ export default function BrandPage() {
 
   return (
     <>
-      <Header />
       <Brands />
     </>
   );

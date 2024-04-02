@@ -45,7 +45,6 @@ export default function BrandPage() {
 
   return (
     <div>
-      <Header />
       <div className="ViewContainer">
         <ShadowTitle
           title={`${

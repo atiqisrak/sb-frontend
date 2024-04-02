@@ -5,6 +5,7 @@ import {
   BarsOutlined,
   DownOutlined,
   MenuFoldOutlined,
+  SearchOutlined,
 } from "@ant-design/icons";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -70,7 +71,7 @@ const Header = () => {
 
   return (
     <nav
-      className="ViewContainer fixed"
+      className="fixed"
       style={{
         display: "grid",
         gridTemplateColumns: "2fr 6fr",
@@ -78,6 +79,10 @@ const Header = () => {
         gap: "1rem",
         padding: "1rem",
         background: "white",
+        position: "fixed",
+        top: 0,
+        zIndex: 100,
+        boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
       }}
     >
       <Image
@@ -138,7 +143,23 @@ const Header = () => {
             ))}
           </Menu>
         </div>
-        <Input.Search />
+        <Input
+          prefix={
+            <SearchOutlined
+              style={{
+                fontSize: "1.5em",
+                color: "var(--tiger)",
+              }}
+            />
+          }
+          placeholder="Search for Bikes"
+          style={{
+            width: "100%",
+            borderRadius: "20px",
+            border: "2px solid var(--transparent-tiger)",
+            padding: "0.5em 1rem",
+          }}
+        />
         <div
           style={{
             display: "flex",

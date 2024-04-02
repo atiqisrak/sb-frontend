@@ -51,7 +51,6 @@ const ProductPage = () => {
 
   return (
     <div>
-      <Header />
       {productData && (
         <div>
           <SingleProduct
