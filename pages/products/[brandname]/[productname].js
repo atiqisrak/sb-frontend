@@ -5,6 +5,7 @@ import ShadowTitle from "@/components/ShadowTitle";
 import { Spin, message } from "antd";
 import instance from "@/axios";
 import SingleProduct from "@/components/SingleProduct";
+import SimilarModels from "@/components/SimilarModels";
 
 const ProductPage = () => {
   const router = useRouter();
@@ -51,15 +52,20 @@ const ProductPage = () => {
 
   return (
     <div>
-      {productData && (
-        <div>
-          <SingleProduct
-            productData={productData?.overview}
-            brandname={brandname}
-            slug={slug}
-          />
-        </div>
-      )}
+      <div>
+        {productData && (
+          <div>
+            <SingleProduct
+              productData={productData?.overview}
+              brandname={brandname}
+              slug={slug}
+            />
+          </div>
+        )}
+      </div>
+      <div>
+        <SimilarModels productId={productData?.overview?.id} />
+      </div>
     </div>
   );
 };

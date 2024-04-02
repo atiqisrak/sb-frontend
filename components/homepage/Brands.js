@@ -6,7 +6,7 @@ const { Title, Paragraph } = Typography;
 import dataset from "../../data/allmodels.json";
 import { useRouter } from "next/router";
 
-export default function Brands() {
+export default function Brands({ darkmode }) {
   const [brandData, setBrandData] = useState([]);
   const [showAllBrands, setShowAllBrands] = useState(false);
   const MEDIA_URL = process.env.NEXT_PUBLIC_MEDIA_URL;
@@ -50,9 +50,10 @@ export default function Brands() {
                   justifyContent: "center",
                   alignItems: "center",
                   flexDirection: "column",
-                  padding: "20px",
                   border: "1px solid #f0f0f0",
                   borderRadius: "10px",
+                  gap: "2em",
+                  paddingTop: "1em",
                 }}
                 onClick={() => {
                   console.log("Brand Clicked: ", brand?.oemSlug);
@@ -70,8 +71,23 @@ export default function Brands() {
                   width={200}
                   height={100}
                   objectFit="contain"
+                  style={{
+                    borderRadius: "10px",
+                    cursor: "pointer",
+                  }}
                 />
-                <Title level={5}>{brand?.oem}</Title>
+                <Title
+                  style={{
+                    width: "100%",
+                    padding: "15px 0",
+                    textAlign: "center",
+                    color: "var(--cat)",
+                    backgroundColor: "var(--themes-light)",
+                  }}
+                  level={4}
+                >
+                  {brand?.oem}
+                </Title>
               </div>
             ))}
       </div>

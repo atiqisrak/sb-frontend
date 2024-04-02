@@ -17,7 +17,7 @@ import {
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-const Footer = () => {
+const Footer = ({ darkmode }) => {
   const [hovered, setHovered] = useState(false);
   const router = useRouter();
   const [socialMedia, setSocialMedia] = useState([
@@ -95,19 +95,54 @@ const Footer = () => {
               border: "none",
             }}
           >
-            <Menu.Item key="1">
+            <Menu.Item
+              key="1"
+              style={{
+                color: darkmode ? "white" : "var(--panther)",
+                fontSize: "1.1em",
+                fontWeight: "500",
+              }}
+            >
               <Link href="/">Countrywide delivery</Link>
             </Menu.Item>
-            <Menu.Item key="2">
+            <Menu.Item
+              key="2"
+              style={{
+                color: darkmode ? "white" : "var(--panther)",
+                fontSize: "1.1em",
+                fontWeight: "500",
+              }}
+            >
               <Link href="/products">Bikes</Link>
             </Menu.Item>
-            <Menu.Item key="3">
+            <Menu.Item
+              key="3"
+              style={{
+                color: darkmode ? "white" : "var(--panther)",
+                fontSize: "1.1em",
+                fontWeight: "500",
+              }}
+            >
               <Link href="#">Booking Procedure</Link>
             </Menu.Item>
-            <Menu.Item key="4">
+            <Menu.Item
+              key="4"
+              style={{
+                color: darkmode ? "white" : "var(--panther)",
+                fontSize: "1.1em",
+                fontWeight: "500",
+              }}
+            >
               <Link href="#">FAQ</Link>
             </Menu.Item>
-            <Menu.Item key="5">
+            <Menu.Item
+              key="5"
+              style={{
+                color: darkmode ? "white" : "var(--panther)",
+                fontSize: "1.1em",
+                fontWeight: "500",
+              }}
+            >
               <Link href="#">Blogs</Link>
             </Menu.Item>
           </Menu>
@@ -123,16 +158,44 @@ const Footer = () => {
               border: "none",
             }}
           >
-            <Menu.Item key="1">
+            <Menu.Item
+              key="1"
+              style={{
+                color: darkmode ? "white" : "var(--panther)",
+                fontSize: "1.1em",
+                fontWeight: "500",
+              }}
+            >
               <Link href="#">Terms & conditions</Link>
             </Menu.Item>
-            <Menu.Item key="2">
+            <Menu.Item
+              key="2"
+              style={{
+                color: darkmode ? "white" : "var(--panther)",
+                fontSize: "1.1em",
+                fontWeight: "500",
+              }}
+            >
               <Link href="#">Privacy Policy</Link>
             </Menu.Item>
-            <Menu.Item key="3">
+            <Menu.Item
+              key="3"
+              style={{
+                color: darkmode ? "white" : "var(--panther)",
+                fontSize: "1.1em",
+                fontWeight: "500",
+              }}
+            >
               <Link href="#">Data Protection</Link>
             </Menu.Item>
-            <Menu.Item key="4">
+            <Menu.Item
+              key="4"
+              style={{
+                color: darkmode ? "white" : "var(--panther)",
+                fontSize: "1.1em",
+                fontWeight: "500",
+              }}
+            >
               <Link href="#">Cookies Policy</Link>
             </Menu.Item>
           </Menu>
@@ -155,11 +218,6 @@ const Footer = () => {
                 }}
               />
             }
-            // suffix={
-            //   <RightCircleFilled
-            //     style={{ fontSize: "1.5em", color: "var(--tiger)" }}
-            //   />
-            // }
             placeholder="Enter your email"
             style={{
               width: "80%",
@@ -186,7 +244,6 @@ const Footer = () => {
                   onMouseEnter={handleHover}
                   onMouseLeave={handleHover}
                   style={{
-                    // color: hovered ? social.color : "var(--elephant)",
                     color: social.color,
                     fontSize: "1.5em",
                     cursor: "pointer",

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Menu, Dropdown, Avata, Avatar, Input, Space } from "antd";
+import { Menu, Dropdown, Avata, Avatar, Input, Space, Switch } from "antd";
 import Link from "next/link";
 import {
   BarsOutlined,
@@ -10,13 +10,14 @@ import {
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-const Header = () => {
+const Header = ({ darkmode }) => {
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(true);
   const [brandData, setBrandData] = useState([]);
   const [brandNames, setBrandNames] = useState([]);
   const [brandSlugs, setBrandSlugs] = useState();
   const [brandsOpen, setBrandsOpen] = useState(false);
+  const [niloyOpen, setNiloyOpen] = useState(false);
   const handleBrandsHover = () => {
     setBrandsOpen(!brandsOpen);
   };
@@ -78,11 +79,12 @@ const Header = () => {
         alignItems: "center",
         gap: "1rem",
         padding: "1rem",
-        background: "white",
+        background: darkmode ? "#0d0d0d" : "#fff",
         position: "fixed",
         top: 0,
         zIndex: 100,
-        boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+        // boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+        boxShadow: darkmode ? "0 2px 5px #ffffff20" : "0 2px 5px #00000020",
       }}
     >
       <Image
@@ -113,6 +115,8 @@ const Header = () => {
             gridTemplateColumns: "repeat(6, 1fr)",
             gap: "1rem",
             justifyContent: "center",
+            fontSize: "1.2em",
+            fontWeight: "bold",
           }}
         >
           <Menu
@@ -126,7 +130,12 @@ const Header = () => {
             }}
           >
             {menus.map((menu, index) => (
-              <Menu.Item key={index}>
+              <Menu.Item
+                key={index}
+                style={{
+                  color: darkmode ? "#ffffff" : "#333",
+                }}
+              >
                 {menu?.title === "Brands" ? (
                   <Dropdown overlay={brandMenu}>
                     <a
@@ -173,7 +182,40 @@ const Header = () => {
             alt="User Profile Picture"
             width={40}
             height={40}
+            style={{
+              cursor: "pointer",
+              objectFit: "contain",
+            }}
+            onClick={() => {
+              setNiloyOpen(!niloyOpen);
+            }}
           />
+          {
+            <div
+              style={{
+                flexDirection: "column",
+                gap: "1rem",
+                display: niloyOpen ? "flex" : "none",
+                position: "absolute",
+                top: "4rem",
+                right: "0rem",
+                padding: "2rem 4em",
+                background: "white",
+                boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+                borderRadius: "1em",
+                border: "2px solid #0d0d0d20",
+                fontSize: "1.2em",
+                fontWeight: "bold",
+                color: "var(--theme)",
+              }}
+            >
+              <Link href="/#">Profile</Link>
+              <Link href="/#">Wishlist</Link>
+              <Link href="/#">Cart</Link>
+              <Link href="/#">Orders</Link>
+              <Link href="/#">Logout</Link>
+            </div>
+          }
         </div>
       </div>
       {/* )} */}
