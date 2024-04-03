@@ -134,7 +134,7 @@ const SingleProduct = ({ productData, brandname, slug, darkmode }) => {
                 <h3>Key Specifications</h3>
               </center> */}
               <ShadowTitle title="Key Specifications" />
-              {productSpecs &&
+              {productSpecs?.keySpecs ? (
                 productSpecs?.keySpecs[0]?.items?.map((spec, index) => (
                   <center>
                     <div
@@ -153,7 +153,10 @@ const SingleProduct = ({ productData, brandname, slug, darkmode }) => {
                       <p dangerouslySetInnerHTML={{ __html: spec?.value }} />
                     </div>
                   </center>
-                ))}
+                ))
+              ) : (
+                <h3>No Key Specifications available</h3>
+              )}
             </div>
           </div>
         </Tabs.TabPane>
@@ -301,3 +304,20 @@ const SingleProduct = ({ productData, brandname, slug, darkmode }) => {
 };
 
 export default SingleProduct;
+
+export async function getServerSideProps({ params }) {
+  const { brandname, slug } = params;
+  // specs
+  const apiUrl = `/modelSpec?url=${encodeURIComponent(
+    `/${brandname}/${slug}/specifications`
+  )}`;
+  const response = await instance.get(apiUrl);
+  const productData = response?.data?.data;
+  return {
+    props: {
+      productData,
+      brandname,
+      slug,
+    },
+  };
+}
