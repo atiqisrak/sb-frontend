@@ -1,15 +1,27 @@
 import instance from "@/axios";
-import { Rate, Spin, Tabs } from "antd";
+import { Col, Rate, Row, Spin, Table, Tabs } from "antd";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import ShadowTitle from "./ShadowTitle";
 import YouTube from "react-youtube";
 import { FireOutlined } from "@ant-design/icons";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
-const SingleProduct = ({ productData, brandname, slug, darkmode }) => {
+const SingleProduct = ({
+  productData,
+  brandname,
+  slug,
+  productReviews,
+  compareWith,
+  specsComparison,
+}) => {
   const [productImages, setProductImages] = useState([]);
   const [productSpecs, setProductSpecs] = useState([]);
   const [showFullSpecs, setShowFullSpecs] = useState(false);
+  const [aboutProduct, setAboutProduct] = useState({});
   const [loading, setLoading] = useState(true);
 
   const fetchProductImages = async () => {
@@ -18,7 +30,6 @@ const SingleProduct = ({ productData, brandname, slug, darkmode }) => {
       const apiUrl = `/modelImage?url=${encodeURIComponent(
         `/${brandname}/${slug}/images`
       )}`;
-      console.log("API URL", apiUrl);
       const response = await instance.get(apiUrl);
       if (response.status === 200) {
         setProductImages(response?.data?.data?.images);
@@ -38,10 +49,10 @@ const SingleProduct = ({ productData, brandname, slug, darkmode }) => {
       const apiUrl = `/modelSpec?url=${encodeURIComponent(
         `/${brandname}/${slug}/specifications`
       )}`;
-      console.log("API URL", apiUrl);
       const response = await instance.get(apiUrl);
       if (response.status === 200) {
         setProductSpecs(response?.data?.data?.specs);
+        setAboutProduct(response?.data?.data?.modelAboutUs);
       } else {
         console.log("Error fetching data");
       }
@@ -62,7 +73,11 @@ const SingleProduct = ({ productData, brandname, slug, darkmode }) => {
   }
 
   // console.log("ProductImages", productImages && productImages);
-  console.log("ProductSpecs", productSpecs && productSpecs);
+  // console.log("ProductSpecs", productSpecs && productSpecs);
+  // console.log("About", productSpecs && aboutProduct);
+  // console.log("ProductData", productData && productData);
+  // console.log("productReviews", productReviews && productReviews);
+
   return (
     <div
       className="ViewContainer"
@@ -130,9 +145,6 @@ const SingleProduct = ({ productData, brandname, slug, darkmode }) => {
                 borderBottom: "1px solid #f0f0f0",
               }}
             >
-              {/* <center>
-                <h3>Key Specifications</h3>
-              </center> */}
               <ShadowTitle title="Key Specifications" />
               {productSpecs?.keySpecs ? (
                 productSpecs?.keySpecs[0]?.items?.map((spec, index) => (
@@ -159,6 +171,31 @@ const SingleProduct = ({ productData, brandname, slug, darkmode }) => {
               )}
             </div>
           </div>
+
+          {/* About Product */}
+          <div
+            className="about-product"
+            style={{
+              width: "100%",
+              padding: "10px 30px",
+              display: "flex",
+              flexDirection: "column",
+              gap: "1em",
+            }}
+          >
+            <ShadowTitle title={`About ${productData?.name}`} />
+            <p
+              style={{
+                fontSize: "0.9em",
+                fontWeight: "normal",
+                textAlign: "justify",
+                color: "var(--zebra)",
+              }}
+              dangerouslySetInnerHTML={{ __html: aboutProduct?.description }}
+            />
+          </div>
+
+          {/* Other Tabs */}
         </Tabs.TabPane>
         {productImages &&
           productImages?.map((tab, index) => (
@@ -299,6 +336,212 @@ const SingleProduct = ({ productData, brandname, slug, darkmode }) => {
             </Tabs.TabPane>
           ))}
       </Tabs>
+
+      {/* Product Review */}
+      <div
+        className="product-review"
+        style={{
+          width: "100%",
+          padding: "10px 30px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "1em",
+        }}
+      >
+        <ShadowTitle title="Product Reviews" />
+        <div
+          className="pros-and-cons"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "1em",
+          }}
+        >
+          <div
+            style={{
+              color: "green",
+              padding: "2em 4em",
+              border: "1px solid #f0f0f0",
+              borderRadius: "10px",
+              boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <h3>Pros</h3>
+            <ul
+              style={{
+                fontSize: "1.2em",
+                fontWeight: "500",
+              }}
+            >
+              {productReviews?.items?.pros?.items?.map((pro, index) => (
+                <li key={index}>{pro?.pros}</li>
+              ))}
+            </ul>
+          </div>
+          <div
+            style={{
+              color: "red",
+              padding: "2em 4em",
+              border: "1px solid #f0f0f0",
+              borderRadius: "10px",
+              boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <h3>Cons</h3>
+            <ul
+              style={{
+                fontSize: "1.2em",
+                fontWeight: "500",
+              }}
+            >
+              {productReviews?.items?.cons?.items?.map((con, index) => (
+                <li key={index}>{con?.cons}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <div>
+          <ShadowTitle title="Standout Features" />
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(4, 1fr)",
+              gap: "1em",
+              padding: "10px",
+            }}
+          >
+            {productReviews?.items?.standOutFeatures?.items?.map(
+              (feature, index) => (
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1em",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: "10px",
+                    backgroundColor: "white",
+                    border: "1px solid #f0f0f0",
+                    borderRadius: "10px",
+                    marginBottom: "20px",
+                    boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+                  }}
+                >
+                  <Image
+                    key={index}
+                    src={feature?.imageUrl}
+                    alt={feature?.standOutFeaturesWithoutTag}
+                    width={400}
+                    height={300}
+                    objectFit="cover"
+                  />
+                  <h3>{feature?.standOutFeaturesWithoutTag}</h3>
+                </div>
+              )
+            )}
+          </div>
+        </div>
+        <div>
+          <ShadowTitle title="SardarBikes Verdict" />
+          <p
+            style={{
+              fontSize: "1.2em",
+              fontWeight: "500",
+              textAlign: "justify",
+            }}
+          >
+            {productReviews?.items?.verdict}
+          </p>
+        </div>
+      </div>
+
+      {/* Competitor & Specifications comparison */}
+      <div className="competitos-list">
+        <ShadowTitle title={`${productData?.name} Competitors`} />
+        {console.log("CompareWith", compareWith?.list)}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",
+            gap: "1em",
+            padding: "10px 30px",
+            backgroundColor: "white",
+            border: "1px solid #f0f0f0",
+            borderRadius: "10px",
+            marginBottom: "20px",
+          }}
+        >
+          {compareWith?.list?.map((item, index) => (
+            <div
+              key={index}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "1em",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "10px",
+                backgroundColor: "white",
+                border: "1px solid #f0f0f0",
+                borderRadius: "10px",
+                marginBottom: "20px",
+                boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              <Image
+                src={item?.image}
+                alt={item?.modelName}
+                width={300}
+                height={200}
+                objectFit="cover"
+                style={{
+                  borderRadius: "10px",
+                }}
+              />
+              <h3>{item?.modelName}</h3>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Specifications Comparison */}
+      <div className="product-specs-comparison">
+        <ShadowTitle title={specsComparison?.heading} />
+        {/* Table 7 rows */}
+        {/* <Col span={24}>
+          specsComparison?.specs?.map((spec, index) => (
+
+            <Row>{spec?.text}</Row>
+          ))
+        </Col> */}
+        <Table
+          columns={[
+            {
+              title: "Specifications",
+              dataIndex: "text",
+              key: "text",
+              width: "50%",
+            },
+            {
+              title: "This Model",
+              dataIndex: "thisModel",
+              key: "thisModel",
+              width: "25%",
+            },
+            {
+              title: "Competitor",
+              dataIndex: "competitor",
+              key: "competitor",
+              width: "25%",
+            },
+          ]}
+          dataSource={specsComparison?.specs}
+          pagination={false}
+          bordered
+          size="small"
+          scroll={{ y: 240 }}
+        />
+      </div>
     </div>
   );
 };

@@ -35,8 +35,6 @@ const SimilarModels = ({ productId }) => {
     fetchSimilarProducts();
   }, []);
 
-  console.log("SimilarProducts", similarProducts && similarProducts);
-
   const handleProductClick = (id) => {
     console.log("Product Clicked", id);
   };

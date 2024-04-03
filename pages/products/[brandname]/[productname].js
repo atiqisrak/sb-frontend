@@ -59,6 +59,9 @@ const ProductPage = () => {
               productData={productData?.overview}
               brandname={brandname}
               slug={slug}
+              productReviews={productData?.pronsAndCons}
+              compareWith={productData?.compareWith}
+              specsComparison={productData?.specsComparison}
             />
           </div>
         )}
