@@ -38,6 +38,10 @@ const Header = ({ darkmode }) => {
       title: "All Bikes",
       link: "/products",
     },
+    {
+      title: "Compare Bikes",
+      link: "/compare",
+    },
   ];
 
   useEffect(() => {
